@@ -36,14 +36,14 @@ Important: Install the content available below in your collection !
 |Links|
 |-----------|
 |Content: https://steamcommunity.com/sharedfiles/filedetails/?id=181309775|
-|GitHub: https://github.com/goldensdevs/Golden-HUD-V1|
+|GitHub: https://github.com/chredeur0/goldenhudv3|
 |Support Discord: https://discord.com/invite/HmshudTkJN|
 |Personal Discord: chredeur#1328|
 
 Make sure to regularly check for fixes and improvements.
 
 
-|Frequently Asked Questions:|
+Frequently Asked Questions:
 
 - Can I change the arrangement of the bars?
 
