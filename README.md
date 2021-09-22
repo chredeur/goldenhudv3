@@ -35,10 +35,6 @@ Make sure to regularly check for fixes and improvements.
 
 Frequently Asked Questions:
 
-- The addon looks a lot like Rust's HUD, why?
-
-Simply because our addon is inspired by some addons on the market and features of Rust's HUD.
-
 - Can I change the layout of the bars?
 
 No, but you can choose which ones to display.
