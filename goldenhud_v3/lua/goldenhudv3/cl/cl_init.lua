@@ -4,6 +4,8 @@
 
 #################################################*/
 
+local vehiclehide = false if GoldenHUDV3.VehicleEnable == true && GoldenHUDV3.Vehicle == "vcmod" then vehiclehide = true end
+
 local HideElementsTable = {
 	["DarkRP_HUD"] = true,
 	["DarkRP_ArrestedHUD"] = false,
@@ -27,13 +29,13 @@ local HideElementsTable = {
 	["MedicMod_HUD"] = false,
 	["MedicMod_DeathPanel"] = false,
 
-	["VCMod_Health"] = false,
-	["VCMod_Damage"] = false,
-	["VCMod_ELS_Lights"] = false,
-	["VCMod_ELS_Siren"] = false, 
-	["VCMod_Fuel"] = false,
-	["VCMod_Name"] = false,
-	["VCMod_Icons"] = false,
+	["VCMod_Health"] = vehiclehide,
+	["VCMod_Damage"] = vehiclehide,
+	["VCMod_ELS_Lights"] = vehiclehide,
+	["VCMod_ELS_Siren"] = vehiclehide, 
+	["VCMod_Fuel"] = vehiclehide,
+	["VCMod_Name"] = vehiclehide,
+	["VCMod_Icons"] = vehiclehide,
 }
 
 local hearticon = Material( "golden_hud_v3/heart.png" )
@@ -150,6 +152,7 @@ hook.Add("HUDPaint","GoldenHudV3.Ammo", function()
 	if GoldenHUDV3.EnableAmmoBar then
 
 		local ply = LocalPlayer()
+		if ply:InVehicle() then return end
 
 		if !IsValid(ply:GetActiveWeapon()) then return end
 

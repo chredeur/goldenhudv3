@@ -5,7 +5,7 @@ include( 'goldenhudv3/sh_initialize.lua' )
 Msg( "[goldenhudv3] sh_initialize.lua load !\n" )
 
 
-local GoldenV1Version = "1.0" -- NEVER TOUCH THIS!
+local GoldenV1Version = "1.1" -- NEVER TOUCH THIS!
 
 if SERVER then
 	util.AddNetworkString( "goldenhudv3version" )

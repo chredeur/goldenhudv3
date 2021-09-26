@@ -15,12 +15,27 @@ GoldenHUDV3.WorkShopDL = true -- Activate disable the WorkShopDL
 -- Language --
 GoldenHUDV3.ConfigLanguage = "en" -- en, fr 
 
--- Compatibility Advanced Cooking Mod --
-GoldenHUDV3.EnableCompatibilityACM = false -- Activate disable the Compatibility Advanced Cooking Mod
-
 -- Hud Bar --
 GoldenHUDV3.ArmorBar = true -- Activate disable armor bar
 GoldenHUDV3.FoodBar = true -- Activate deactivate the food bar
+
+-- Compatibility Advanced Cooking Mod --
+GoldenHUDV3.EnableCompatibilityACM = false -- Activate disable the Compatibility Advanced Cooking Mod
+
+-- Speedometer Hud --
+GoldenHUDV3.SpeedometerHud = true -- Activate disable the Speedometer Hud
+GoldenHUDV3.MPHCounter = true -- true = MPH system / false = KM/H system
+GoldenHUDV3.SpeedometerBackgroundColor = Color(0, 0, 0, 225) -- Change the color of the Background
+
+-- Vehicle System --
+GoldenHUDV3.VehicleEnable = false -- Activate disable the Vehicle System
+GoldenHUDV3.Vehicle = "vcmod" -- "vcmod" or "svmod"
+
+-- Wanted --
+GoldenHUDV3.EnableWanted = true -- Activate disable the Wanted Hud
+
+-- Notification --
+GoldenHUDV3.EnableNotif = true -- Activate disable the Notification
 
 -- Props Hud --
 GoldenHUDV3.PropsHUD = true -- Activate disable the Props Hud
@@ -67,11 +82,13 @@ GoldenHUDV3.IconColor = Color(255, 255, 255, 255)
 -- Language --
 GoldenHUDV3.Language = {
 	["fr"] = {
+		["wanted"] = "Vous êtes rechercher par la police",
 		["props"] = "Objets:",
 		["version_1"] = "[Alerte SuperAdmin GoldenHudV3] Version obsolète de GoldenHudV3, Version: ",
 		["version_2"] = " , téléchargez la dernière version sur Github, Workshop ou mtxserv resources, Version: ",
 	},
 	["en"] = {
+		["wanted"] = "You are wanted by police",
 		["props"] = "Props:",
 		["version_1"] = "[GoldenHudV3 SuperAdmin Alert] Obsolete version of Golden Hud V1, Version : ",
 		["version_2"] = " , download the latest version on Github, Workshop or mtxserv resources, Version: ",
