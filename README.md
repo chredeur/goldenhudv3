@@ -4,11 +4,12 @@ Here is the Golden HUD V3, an optimized and customizable hud.
 
 |Characteristics|
 |---------------|
-|New ! Compatibility for SVMod|
-|New ! Compatibility for VCMod|
-|New ! Wanted Hud|
-|New ! Speedometer|
-|New ! Notifications|
+|New ! Money Hud|
+|Compatibility for SVMod|
+|Compatibility for VCMod|
+|Wanted Hud|
+|Speedometer|
+|Notifications|
 | Compatibility for Advanced Cooking Mod|
 | Added an HUD for your Props|
 | Added FastDL and Workshop DL in the config' file|
