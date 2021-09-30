@@ -13,7 +13,7 @@ local HideElementsTable = {
 	["DarkRP_ZombieInfo"] = true,
 	["DarkRP_LocalPlayerHUD"] = true,
 	["DarkRP_Hungermod"] = true,
-	["DarkRP_Agenda"] = false,
+	["DarkRP_Agenda"] = true,
 	 
 	["CHudHealth"] = GoldenHUDV3.EnableAmmoBar,
 	["CHudBattery"] = GoldenHUDV3.EnableAmmoBar,
@@ -44,11 +44,13 @@ local armoricon = Material( "golden_hud_v3/shield.png" )
 local thirsticon = Material( "golden_hud_v3/water-bottle.png" )
 local ammoicon = Material( "golden_hud_v3/ammo.png" )
 local gunicon = Material( "golden_hud_v3/gun.png" )
+local moneyicon = Material( "golden_hud_v3/money.png" )
 
 local health = 0
 local armor = 0
 local food = 0
 local thirst = 0
+local salary, money
 hook.Add("HUDPaint","GoldenHudV3", function()
 
 	local ply = LocalPlayer()
@@ -56,11 +58,13 @@ hook.Add("HUDPaint","GoldenHudV3", function()
 	local armory = 0
 	local foody = 0
 	local thirsty = 0
+	local moneyy = 0
 
 	local boxsize = 40
 	local boxfoody = 0
 	local boxarmor = 0
 	local boxthirst = 0
+	local boxmoney = 0
 
 	health = Lerp( FrameTime(), health, ply:Health())
 
@@ -88,59 +92,81 @@ hook.Add("HUDPaint","GoldenHudV3", function()
 		boxthirst = 35
 	end
 
+	-- Config Check Money --
+	if GoldenHUDV3.MoneyBar then
+		salary = DarkRP.formatMoney(ply:getDarkRPVar("salary"))
+		money = DarkRP.formatMoney(ply:getDarkRPVar("money"))
+		moneyy = 35
+		boxsize = boxsize + 35
+		boxmoney = 35
+	end
+
 	-- Background --
-	draw.RoundedBox(0, 10, ScrH() - 50 - boxarmor - boxfoody - boxthirst, 360, boxsize, GoldenHUDV3.BackgroundColor)
+	draw.RoundedBox(0, 10, ScrH() - 50 - boxarmor - boxfoody - boxthirst - boxmoney, 360, boxsize, GoldenHUDV3.BackgroundColor)
 
 	-- Health --
-	draw.RoundedBox(0, 14, ScrH() - 45 - armory - foody - thirsty, 30, 30, GoldenHUDV3.HeaderColor)
-	draw.RoundedBox(0, 50, ScrH() - 45 - armory - foody - thirsty, 316, 30, GoldenHUDV3.HeaderColor)
-	draw.RoundedBox(5, 55, ScrH() - 40.55 - armory - foody - thirsty, 306, 21, GoldenHUDV3.BackgroundHealthColor)
-	draw.RoundedBox(5, 55, ScrH() - 40.55 - armory - foody - thirsty, math.Clamp(health, 0, 100) * 3.06, 21, GoldenHUDV3.HealthColor)
+	draw.RoundedBox(0, 14, ScrH() - 45 - armory - foody - thirsty - moneyy, 30, 30, GoldenHUDV3.HeaderColor)
+	draw.RoundedBox(0, 50, ScrH() - 45 - armory - foody - thirsty - moneyy, 316, 30, GoldenHUDV3.HeaderColor)
+	draw.RoundedBox(5, 55, ScrH() - 40.55 - armory - foody - thirsty - moneyy, 306, 21, GoldenHUDV3.BackgroundHealthColor)
+	draw.RoundedBox(5, 55, ScrH() - 40.55 - armory - foody - thirsty - moneyy, math.Clamp(health, 0, 100) * 3.06, 21, GoldenHUDV3.HealthColor)
 
-	draw.SimpleText(math.Round(health).."%", "GoldenHudV3Font", 202, ScrH() - 44 - armory - foody - thirsty, GoldenHUDV3.HeaderTextColor, TEXT_ALIGN_CENTER)
+	draw.SimpleText(math.Round(health).."%", "GoldenHudV3Font", 202, ScrH() - 44 - armory - foody - thirsty - moneyy, GoldenHUDV3.HeaderTextColor, TEXT_ALIGN_CENTER)
 
 	surface.SetMaterial( hearticon )
     surface.SetDrawColor(GoldenHUDV3.IconColor)
-	surface.DrawTexturedRect( 18, ScrH() - 41 - armory - foody - thirsty, 22, 22 )
+	surface.DrawTexturedRect( 18, ScrH() - 41 - armory - foody - thirsty - moneyy, 22, 22 )
 
 	-- Armor --
 	if GoldenHUDV3.ArmorBar then
-		draw.RoundedBox(0, 14, ScrH() - 45 - foody - thirsty, 30, 30, GoldenHUDV3.HeaderColor)
-		draw.RoundedBox(0, 50, ScrH() - 45 - foody - thirsty, 316, 30, GoldenHUDV3.HeaderColor)
-		draw.RoundedBox(5, 55, ScrH() - 40.55 - foody - thirsty, 306, 21, GoldenHUDV3.BackgroundArmorColor)
-		draw.RoundedBox(5, 55, ScrH() - 40.55 - foody - thirsty, math.Clamp(armor, 0, 100) * 3.06, 21, GoldenHUDV3.ArmorColor)
+		draw.RoundedBox(0, 14, ScrH() - 45 - foody - thirsty - moneyy, 30, 30, GoldenHUDV3.HeaderColor)
+		draw.RoundedBox(0, 50, ScrH() - 45 - foody - thirsty - moneyy, 316, 30, GoldenHUDV3.HeaderColor)
+		draw.RoundedBox(5, 55, ScrH() - 40.55 - foody - thirsty - moneyy, 306, 21, GoldenHUDV3.BackgroundArmorColor)
+		draw.RoundedBox(5, 55, ScrH() - 40.55 - foody - thirsty - moneyy, math.Clamp(armor, 0, 100) * 3.06, 21, GoldenHUDV3.ArmorColor)
 
-		draw.SimpleText(math.Round(armor).."%", "GoldenHudV3Font", 202, ScrH() - 44 - foody - thirsty, GoldenHUDV3.HeaderTextColor, TEXT_ALIGN_CENTER)
+		draw.SimpleText(math.Round(armor).."%", "GoldenHudV3Font", 202, ScrH() - 44 - foody - thirsty - moneyy, GoldenHUDV3.HeaderTextColor, TEXT_ALIGN_CENTER)
 
 		surface.SetMaterial( armoricon )
 	    surface.SetDrawColor(GoldenHUDV3.IconColor)
-		surface.DrawTexturedRect( 18, ScrH() - 41 - foody - thirsty, 22, 22 )
+		surface.DrawTexturedRect( 18, ScrH() - 41 - foody - thirsty - moneyy, 22, 22 )
 	end
 
 	-- Food --
 	if GoldenHUDV3.FoodBar then
-		draw.RoundedBox(0, 14, ScrH() - 45 - thirsty, 30, 30, GoldenHUDV3.HeaderColor)
-		draw.RoundedBox(0, 50, ScrH() - 45 - thirsty, 316, 30, GoldenHUDV3.HeaderColor)
-		draw.RoundedBox(5, 55, ScrH() - 40.55 - thirsty, 306, 21, GoldenHUDV3.BackgroundFoodColor)
-		draw.RoundedBox(5, 55, ScrH() - 40.55 - thirsty, math.Clamp(food, 0, 100) * 3.06, 21, GoldenHUDV3.FoodColor)
+		draw.RoundedBox(0, 14, ScrH() - 45 - thirsty - moneyy, 30, 30, GoldenHUDV3.HeaderColor)
+		draw.RoundedBox(0, 50, ScrH() - 45 - thirsty - moneyy, 316, 30, GoldenHUDV3.HeaderColor)
+		draw.RoundedBox(5, 55, ScrH() - 40.55 - thirsty - moneyy, 306, 21, GoldenHUDV3.BackgroundFoodColor)
+		draw.RoundedBox(5, 55, ScrH() - 40.55 - thirsty - moneyy, math.Clamp(food, 0, 100) * 3.06, 21, GoldenHUDV3.FoodColor)
 
-		draw.SimpleText(math.Round(food).."%", "GoldenHudV3Font", 202, ScrH() - 44 - thirsty, GoldenHUDV3.HeaderTextColor, TEXT_ALIGN_CENTER)
+		draw.SimpleText(math.Round(food).."%", "GoldenHudV3Font", 202, ScrH() - 44 - thirsty - moneyy, GoldenHUDV3.HeaderTextColor, TEXT_ALIGN_CENTER)
 
 		surface.SetMaterial( foodicon )
 	    surface.SetDrawColor(GoldenHUDV3.IconColor)
-		surface.DrawTexturedRect( 18, ScrH() - 41 - thirsty, 22, 22 )
+		surface.DrawTexturedRect( 18, ScrH() - 41 - thirsty - moneyy, 22, 22 )
 	end
 
 	-- Thirst --
 	if GoldenHUDV3.EnableCompatibilityACM then
-		draw.RoundedBox(0, 14, ScrH() - 45, 30, 30, GoldenHUDV3.HeaderColor)
-		draw.RoundedBox(0, 50, ScrH() - 45, 316, 30, GoldenHUDV3.HeaderColor)
-		draw.RoundedBox(5, 55, ScrH() - 40.55, 306, 21, GoldenHUDV3.BackgroundThirstColor)
-		draw.RoundedBox(5, 55, ScrH() - 40.55, math.Clamp(thirst, 0, 100) * 3.06, 21, GoldenHUDV3.ThirstColor)
+		draw.RoundedBox(0, 14, ScrH() - 45 - moneyy, 30, 30, GoldenHUDV3.HeaderColor)
+		draw.RoundedBox(0, 50, ScrH() - 45 - moneyy, 316, 30, GoldenHUDV3.HeaderColor)
+		draw.RoundedBox(5, 55, ScrH() - 40.55 - moneyy, 306, 21, GoldenHUDV3.BackgroundThirstColor)
+		draw.RoundedBox(5, 55, ScrH() - 40.55 - moneyy, math.Clamp(thirst, 0, 100) * 3.06, 21, GoldenHUDV3.ThirstColor)
 
-		draw.SimpleText(math.Round(thirst).."%", "GoldenHudV3Font", 202, ScrH() - 44, GoldenHUDV3.HeaderTextColor, TEXT_ALIGN_CENTER)
+		draw.SimpleText(math.Round(thirst).."%", "GoldenHudV3Font", 202, ScrH() - 44 - moneyy, GoldenHUDV3.HeaderTextColor, TEXT_ALIGN_CENTER)
 
 		surface.SetMaterial( thirsticon )
+	    surface.SetDrawColor(GoldenHUDV3.IconColor)
+		surface.DrawTexturedRect( 18, ScrH() - 41 - moneyy, 22, 22 )
+	end
+
+	-- Money --
+	if GoldenHUDV3.MoneyBar then
+		draw.RoundedBox(0, 14, ScrH() - 45, 30, 30, GoldenHUDV3.HeaderColor)
+		draw.RoundedBox(0, 50, ScrH() - 45, 316, 30, GoldenHUDV3.HeaderColor)
+		draw.RoundedBox(5, 55, ScrH() - 40.55, 306, 21, GoldenHUDV3.MoneyColor)
+
+		draw.SimpleText(money, "GoldenHudV3Font", 202, ScrH() - 43, GoldenHUDV3.HeaderTextColor, TEXT_ALIGN_CENTER)
+
+		surface.SetMaterial( moneyicon )
 	    surface.SetDrawColor(GoldenHUDV3.IconColor)
 		surface.DrawTexturedRect( 18, ScrH() - 41, 22, 22 )
 	end

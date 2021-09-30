@@ -12,6 +12,8 @@ local fuelicon = Material( "golden_hud_v3/fuel.png" )
 local engineicon = Material( "golden_hud_v3/engine.png" )
 local caricon = Material( "golden_hud_v3/car.png" )
 
+local vehicleList
+
 hook.Add("HUDPaint", "GoldenHudV3.Vehicle", function()
 	if GoldenHUDV3.VehicleEnable == false && GoldenHUDV3.SpeedometerHud == false then return end
 
@@ -51,9 +53,7 @@ hook.Add("HUDPaint", "GoldenHudV3.Vehicle", function()
 		boxvehicley = boxvehicley + 70
 		vehicley = vehicley + 35
 		vehicley2 = vehicley2 + 35
-	end
-
-	if GoldenHUDV3.VehicleEnable && GoldenHUDV3.Vehicle == "vcmod" && VC then
+	elseif GoldenHUDV3.VehicleEnable && GoldenHUDV3.Vehicle == "vcmod" && VC then
 		fuel = math.Round(vehs:VC_fuelGet(false))
 		fuelmax = vehs:VC_fuelGetMax()
 		health = math.Round(vehs:VC_getHealth(true))
@@ -86,9 +86,9 @@ hook.Add("HUDPaint", "GoldenHudV3.Vehicle", function()
 	draw.RoundedBox(0, y + 5 , x + 5 - vehicley - vehicley2 - speedy, 30, 30, GoldenHUDV3.HeaderColor)
 	draw.RoundedBox(0, y + 42, x + 5 - vehicley - vehicley2 - speedy, 210, 30, GoldenHUDV3.HeaderColor)
 
-	local vehname = list.Get( "Vehicles" )[ vehs:GetVehicleClass() ]
+	vehicleList = vehicleList or list.Get("Vehicles")
 
-	vehname = vehname.Name
+	local vehname = vehicleList[ vehs:GetVehicleClass() ].Name
 
 	if string.len(vehname) > 23 then vehname = string.Left( vehname, 22 ) .. "..." end
 

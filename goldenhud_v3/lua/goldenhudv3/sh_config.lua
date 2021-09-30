@@ -17,7 +17,8 @@ GoldenHUDV3.ConfigLanguage = "en" -- en, fr
 
 -- Hud Bar --
 GoldenHUDV3.ArmorBar = true -- Activate disable armor bar
-GoldenHUDV3.FoodBar = true -- Activate deactivate the food bar
+GoldenHUDV3.FoodBar = true -- Activate disable the food bar
+GoldenHUDV3.MoneyBar = true -- Activate disable the money bar
 
 -- Compatibility Advanced Cooking Mod --
 GoldenHUDV3.EnableCompatibilityACM = false -- Activate disable the Compatibility Advanced Cooking Mod
@@ -77,6 +78,8 @@ GoldenHUDV3.BackgroundFoodColor = Color(1, 142, 8, 50)
 GoldenHUDV3.ThirstColor = Color(74, 179, 242, 150)
 GoldenHUDV3.BackgroundThirstColor = Color(74, 179, 242, 50)
 
+GoldenHUDV3.MoneyColor = Color(145, 92, 35, 255)
+
 GoldenHUDV3.IconColor = Color(255, 255, 255, 255)
 
 -- Language --
@@ -90,7 +93,7 @@ GoldenHUDV3.Language = {
 	["en"] = {
 		["wanted"] = "You are wanted by police",
 		["props"] = "Props:",
-		["version_1"] = "[GoldenHudV3 SuperAdmin Alert] Obsolete version of Golden Hud V1, Version : ",
+		["version_1"] = "[GoldenHudV3 SuperAdmin Alert] Obsolete version of GoldenHudV3, Version : ",
 		["version_2"] = " , download the latest version on Github, Workshop or mtxserv resources, Version: ",
 	}
 }
