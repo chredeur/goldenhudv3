@@ -50,7 +50,7 @@ local health = 0
 local armor = 0
 local food = 0
 local thirst = 0
-local salary, money
+local money
 hook.Add("HUDPaint","GoldenHudV3", function()
 
 	local ply = LocalPlayer()
@@ -94,7 +94,6 @@ hook.Add("HUDPaint","GoldenHudV3", function()
 
 	-- Config Check Money --
 	if GoldenHUDV3.MoneyBar then
-		salary = DarkRP.formatMoney(ply:getDarkRPVar("salary"))
 		money = DarkRP.formatMoney(ply:getDarkRPVar("money"))
 		moneyy = 35
 		boxsize = boxsize + 35
